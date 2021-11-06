@@ -11,11 +11,12 @@ using namespace Eigen;
 
 class Coordinates{
     public:
-        short x,y;
-    Coordinates(short xx, short yy){
-        x = xx;
-        y = yy;
-    }
+        short x,y = {0};    
+    Coordinates(short xx=0, short yy=0)
+        :x(xx),y(yy)
+       {}
+
+
     void add(Coordinates sec){
         x+=sec.x;
         y+=sec.y;
@@ -35,7 +36,7 @@ class Move{
     // No default constructor Error --> seems like object Arrays are not possible ??
     // possible fixes: Array of refrences ???
  
-    Move(Coordinates s_in, Coordinates d_in, Coordinates a_in){ 
+    Move(Coordinates s_in, Coordinates d_in, Coordinates a_in){
         s = s_in;
         d = d_in;
         a = a_in;
@@ -103,16 +104,16 @@ class Board {
             short x = c.x;
             short y = c.y;                        
             vector<Coordinates> positions;
-            
             // North
             int i = x-1;
-            do{   
+            while(i>=0){ 
                 if(field(i,y)==0){
                     positions.push_back(Coordinates(i,y));
                 }else{
                     break;
                 } 
-            }while(i--);
+                i--;
+            }
 
             // South
             i = x+1;
@@ -127,13 +128,14 @@ class Board {
             
             // West
             i = y-1;
-            do{   
+            while(i>=0){   
                 if(field(x,i)==0){
                     positions.push_back(Coordinates(x,i));
                 }else{
                     break;
                 } 
-            }while(i--);
+                i--;
+            } 
 
             // East
             i = y+1;
@@ -230,12 +232,15 @@ class Board {
             return true;
             
         }      
+        /*
+            returns vector of MOVES 
+        **/
+        vector<Move> generate_moves(short color){
 
-
-    vector<Move> generate_moves(short color){
         vector<Move> moves;
         vector<Coordinates> queens = get_queen_positions(color);
         short sx,sy,dx,dy;
+       
         for (size_t i = 0; i < queens.size(); i++)
         {
             vector<Coordinates> amazon_move = get_amazon_moves(queens[i]);
@@ -250,7 +255,6 @@ class Board {
                 // move
                 field(amazon_move[j].x,amazon_move[j].y) = field(queens[i].x,queens[i].y);
                 field(queens[i].x,queens[i].y) = 0;
-
                 // North
                 for (size_t k = 1; k < board_size; k++)
                 {
@@ -351,13 +355,13 @@ class Board {
                 field(queens[i].x,queens[i].y) = 0;
 
 
-                return moves;
+                
             }
             
 
         }
         
-
+        return moves;
     }
 };
 
