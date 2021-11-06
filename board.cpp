@@ -21,13 +21,12 @@ int main(int argc, char const *argv[])
         board1.field(positions[i].x,positions[i].y) = 4;
     }
     cout << "field =" << endl << board1.field << endl;
-    cout << "lost?" << board1.has_lost(1);
-     
-
-    // Liste:
-    // (0,4),(0,6),(3,0),(3,9)
-
-
-
+    cout << "lost?" << board1.has_lost(1) << "\n";
+    auto moves = board1.generate_moves(1);
+    for (size_t i = 0; i < moves.size(); i++)
+    {
+        cout << "==" << moves[i].s.x << moves[i].s.y << moves[i].d.x << moves[i].d.y << moves[i].a.x << moves[i].a.y;
+    }
+    
     return 0;
 }
