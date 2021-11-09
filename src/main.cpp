@@ -1,11 +1,42 @@
-#include "ai.hpp"
+#include "ai.cpp"
 #include "board.cpp"
 #include <iostream>
 
 using namespace std;
 
 void game(Board &board, Mode &A, Mode &B, ulong &MCTS){
-    board.debugout();
+    short white = 1;
+    short black = 2;
+
+  cout << "--\n";
+  board.debugout();
+    while(true){
+        cout << "--\n";
+        if (not board.has_lost(white)){
+          alpha_beta_get_move(board, A);
+          cout << "White's turn:\n";
+          board.debugout();
+          board.whites_turn = false;
+
+        }else{
+          cout << "Black won;";
+          board.debugout();
+          return;
+        }
+
+        if (not board.has_lost(black)){
+          alpha_beta_get_move(board, B);
+          cout << "Black's turn:\n";
+          board.debugout();
+          board.whites_turn = true;
+
+
+        }else{
+          cout << "White won;";
+          board.debugout();
+          return;
+        }
+    }    
 
 }
 

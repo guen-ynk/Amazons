@@ -40,8 +40,9 @@ void alpha_beta_get_move(Board &board, Mode &mode){
 
 }
 
-_Float32 alpha_beta(Board &board, u_short  &depth, _Float32 &a, _Float32 &b, const bool &calling_player, bool whites_turn, const Mode &mode){
+_Float32 alpha_beta(Board &board, u_short  depth, _Float32 a, _Float32 b, const bool &calling_player, bool whites_turn, const Mode &mode){
     // Functionwide 
+
     short token = whites_turn?1:2;
 
     // Leaf-node Case
@@ -84,7 +85,7 @@ _Float32 alpha_beta(Board &board, u_short  &depth, _Float32 &a, _Float32 &b, con
         board.field(move_s(moves[i])) = 0;
         board.field(move_a(moves[i])) = -1;
 
-        score = alpha_beta(board, --depth, a, b, calling_player, not whites_turn,mode);
+        score = alpha_beta(board, depth-1, a, b, calling_player, not whites_turn,mode);
 
         // undo move
         board.field(move_a(moves[i])) = 0;

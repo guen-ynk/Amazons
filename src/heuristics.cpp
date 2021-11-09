@@ -8,11 +8,12 @@ _Float32 mobility_evaluation(Board &board, short &token){
     iterv(amazons_pos){
         vector<Coordinates> moves = board.get_amazon_moves(amazons_pos[i]);
         iterv_inner(moves){
+          
             x = moves[j].x;
             y = moves[j].y; 
 
             // move
-            board.field(move_ind(moves[j])) = board.field(move_ind(amazons_pos[i]));
+            board.field(move_ind(moves[j])) = token;
             board.field(move_ind(amazons_pos[i])) = 0;
 
             // North
@@ -92,7 +93,7 @@ _Float32 mobility_evaluation(Board &board, short &token){
             }
           
             // undo move
-            board.field(move_ind(amazons_pos[i])) = board.field(move_ind(moves[j]));
+            board.field(move_ind(amazons_pos[i])) = token;
             board.field(move_ind(moves[j])) = 0;
         }
     }

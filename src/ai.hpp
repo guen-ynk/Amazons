@@ -34,4 +34,4 @@ void alpha_beta_get_move(Board &board, Mode &mode);
  * @return _Float32, the alphabeta values for the calling AB instance
  */
 
-_Float32 alpha_beta(Board &board, u_short  &depth, _Float32 &a, _Float32 &b, const bool &calling_player, bool whites_turn, const Mode &mode);
+_Float32 alpha_beta(Board &board, u_short depth, _Float32 a, _Float32 b, const bool &calling_player, bool whites_turn, const Mode &mode);

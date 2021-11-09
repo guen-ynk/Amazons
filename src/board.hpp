@@ -6,14 +6,14 @@
 #include "Eigen/Dense"
 #include "move.cpp"
 
-#define iterv(x) for (int i=0; i<=(x.size()); i++)
-#define iterv_inner(x) for (int j=0; j<=(x.size()); j++)
+#define iterv(x) for (int i=0; i<(x.size()); i++)
+#define iterv_inner(x) for (int j=0; j<(x.size()); j++)
 
-#define move_s(in) (in.s.x, in.s.y) 
-#define move_d(in) (in.d.x, in.d.y) 
-#define move_a(in) (in.a.x, in.a.y) 
+#define move_s(in) in.s.x, in.s.y
+#define move_d(in) in.d.x, in.d.y 
+#define move_a(in) in.a.x, in.a.y 
 
-#define move_ind(in) (in.x,in.y)
+#define move_ind(in) in.x,in.y
 
 using namespace std;
 using namespace Eigen;

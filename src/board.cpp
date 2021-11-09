@@ -163,8 +163,9 @@ vector<Move> Board::generate_moves(short &color){
                 Coordinates d = Coordinates(dx,dy);
 
                 // move
-                field(amazon_move[j].x,amazon_move[j].y) = field(queens[i].x,queens[i].y);
-                field(queens[i].x,queens[i].y) = 0;
+                field(move_ind(amazon_move[j])) = color;
+                field(move_ind(queens[i])) = 0;
+
                 // North
                 for (size_t k = 1; k < board_size; k++)
                 {
@@ -244,8 +245,8 @@ vector<Move> Board::generate_moves(short &color){
                         break;
                 }
                 // undo move
-                field(queens[i].x,queens[i].y) = field(amazon_move[j].x,amazon_move[j].y);
-                field(queens[i].x,queens[i].y) = 0;
+                field(move_ind(amazon_move[j])) = 0;
+                field(move_ind(queens[i])) = color;
             }
             
 
@@ -268,7 +269,8 @@ void Board::debugout(){
     
     
 }
-/* Testing
+
+/*
 int main(int argc, char const *argv[])
 {
     Board board1 = Board();
@@ -280,7 +282,6 @@ int main(int argc, char const *argv[])
     for (size_t i = 0; i < positions.size(); i++)
     {
         cout << positions[i].x << positions[i].y << endl;
-        board1.field(positions[i].x,positions[i].y) = 4;
     }
     cout << "field =" << endl << board1.field << endl;
  
@@ -290,7 +291,8 @@ int main(int argc, char const *argv[])
     {
         cout << "==" << moves[i].s.x << moves[i].s.y << moves[i].d.x << moves[i].d.y << moves[i].a.x << moves[i].a.y;
     }
-    
+    cout << "field =" << endl << board1.field << endl;
+
     return 0;
 }
 */
