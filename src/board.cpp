@@ -257,17 +257,23 @@ vector<Move> Board::generate_moves(short &color){
 
 
 void Board::debugout(){
+    
     for (size_t i = 0; i < board_size; i++)
     {
         for (size_t j = 0; j < board_size; j++)
         {
-            cout << field(i,j) << " ";
+            cout << map_in(field(i,j));
         }
         cout << "\n";
-        
     }
-    
-    
+
+
+}
+string Board::map_in(short &in){
+    if(in==0)return " . ";
+    if(in==-1)return" ■ ";
+    if(in==1)return" ♛ ";
+    return " ♕ ";
 }
 
 /*

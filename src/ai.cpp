@@ -2,8 +2,8 @@
 #include "heuristics.cpp"
 
 void alpha_beta_get_move(Board &board, Mode &mode){
-    _Float32 best_score = numeric_limits<_Float32>::min(); 
-    _Float32 worst_score = numeric_limits<_Float32>::max(); 
+    _Float32 best_score = -10000.0f; 
+    _Float32 worst_score =10000.0f; 
     _Float32 score = 0.0;
 
     short token = board.whites_turn ? 1 : 2;

@@ -2,6 +2,7 @@
 #pragma once
 #include <vector> // #include directive
 #include <iostream>
+#include <string>
 
 #include "Eigen/Dense"
 #include "move.cpp"
@@ -52,6 +53,8 @@ class Board {
         vector<Move> generate_moves(short &color);
 
         void debugout();
+
+        string map_in(short &in);
 };
 
 
