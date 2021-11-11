@@ -6,7 +6,6 @@ class Move{
         Coordinates s;
         Coordinates d;
         Coordinates a;
-    Move() = delete;
     Move(Coordinates s_in, Coordinates d_in, Coordinates a_in);
    
 

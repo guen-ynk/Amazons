@@ -64,7 +64,9 @@ _Float32 alpha_beta(Board &board, u_short  depth, _Float32 a, _Float32 b, const 
             break;
 
         case a_b_territorial:
-
+            if (calling_player) return territorial_positional_evaluation(board,one);
+            else
+                return territorial_positional_evaluation(board,two);
             break;
 
         default:

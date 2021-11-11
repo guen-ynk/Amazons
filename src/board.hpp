@@ -3,6 +3,7 @@
 #include <vector> // #include directive
 #include <iostream>
 #include <string>
+#include<cmath>
 
 #include "Eigen/Dense"
 #include "move.cpp"
@@ -25,7 +26,13 @@ class Board {
         bool whites_turn;
         short board_size;
         short amazons_count;
+        short open_fields;
+
         Matrix<short,Dynamic,Dynamic> field;
+        Matrix<short,Dynamic,Dynamic> wq_h;
+        Matrix<short,Dynamic,Dynamic> wk_h;
+        Matrix<short,Dynamic,Dynamic> bq_h;
+        Matrix<short,Dynamic,Dynamic> bk_h;
 
         vector<Coordinates> operations {
             Coordinates(1,0),Coordinates(-1,0),Coordinates(0,1),Coordinates(0,-1),
@@ -33,7 +40,7 @@ class Board {
         };
 
         
-        Board();
+        Board(short size);
 
         /*
             returns vector of coordinates ( amazons )

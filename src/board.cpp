@@ -3,21 +3,50 @@
 using namespace std;
 using namespace Eigen;
 
-Board::Board(){
+Board::Board(short size){
             whites_turn = true;
-            board_size = 10;
             amazons_count = 4;
-            field =  Matrix <short , 10, 10>::Zero();
 
-            field(0,3) = 1;
-            field(0,6) = 1;
-            field(3,0) = 1;
-            field(3,9) = 1;
+            // 10 
+            if (size == 10){
+                field =  Matrix <short , 10, 10>::Zero();
+                open_fields = 92;
 
-            field(9,3) = 2;
-            field(9,6) = 2;
-            field(6,0) = 2;
-            field(6,9) = 2;
+                wq_h = Matrix <short , 10, 10>::Constant(999);
+                wk_h = Matrix <short , 10, 10>::Constant(999);
+                bq_h = Matrix <short , 10, 10>::Constant(999);
+                bk_h = Matrix <short , 10, 10>::Constant(999);
+
+                board_size = 10;
+
+                field(0,3) = 1;
+                field(0,6) = 1;
+                field(3,0) = 1;
+                field(3,9) = 1;
+
+                field(9,3) = 2;
+                field(9,6) = 2;
+                field(6,0) = 2;
+                field(6,9) = 2;
+            }else{
+                field =  Matrix <short , 4, 4>::Zero();
+                board_size = 4;
+                open_fields = 12;
+
+                wq_h = Matrix <short , 4, 4>::Constant(999);
+                wk_h = Matrix <short , 4, 4>::Constant(999);
+                bq_h = Matrix <short , 4, 4>::Constant(999);
+                bk_h = Matrix <short , 4, 4>::Constant(999);
+
+                field(0,0) = 1;
+                field(0,3) = 1;
+         
+
+                field(3,0) = 2;
+                field(3,3) = 2;
+     
+            }
+            
         }
 vector<Coordinates> Board::get_queen_positions(short &color){
             short counter = 0;

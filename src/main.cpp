@@ -19,7 +19,7 @@ void game(Board &board, Mode &A, Mode &B, ulong &MCTS){
           board.whites_turn = false;
 
         }else{
-          cout << "Black won;";
+          cout << "Black won:\n\n";
           board.debugout();
           return;
         }
@@ -32,7 +32,7 @@ void game(Board &board, Mode &A, Mode &B, ulong &MCTS){
 
 
         }else{
-          cout << "White won;";
+          cout << "White won:\n\n";
           board.debugout();
           return;
         }
@@ -43,9 +43,10 @@ void game(Board &board, Mode &A, Mode &B, ulong &MCTS){
 int main(int argc, char const *argv[])
 {
   /* code */
-  Board gameboard = Board();
+  const short ten = 10;
+  Board gameboard = Board(ten);
   Mode player_a(a_b_mobility);
-  Mode player_b(a_b_mobility);
+  Mode player_b(a_b_territorial);
   ulong MCTS = 10000;
   game(gameboard, player_a, player_b, MCTS);
   return 0;
